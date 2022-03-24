@@ -12,7 +12,7 @@ export class CloudFunction {
   }
 
   private login(): void {
-    this.securityHelper.unauthenticatedCloudFunction('login', async req => {
+    this.securityHelper.unauthenticatedCloudFunction('login', async (req) => {
       const { method, authData } = req.params;
       const sessionToken = await this.socialLogin.login(method as string, authData as Record<string, string>);
       return { sessionToken };

@@ -19,6 +19,7 @@ class RequestClient {
       code: response.status,
     });
   }
+
   async get(url: string, json?: boolean): Promise<unknown> {
     const response = await fetch(url);
     return RequestClient.transformResponse(response, json);

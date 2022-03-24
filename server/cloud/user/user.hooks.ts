@@ -15,13 +15,13 @@ export class UserHooks {
   }
 
   private beforeSave(): void {
-    this.securityHelper.authenticatedBeforeSave(Table.User, async req => {
+    this.securityHelper.authenticatedBeforeSave(Table.User, async (req) => {
       await this.aclUpdate.user(req.object);
     });
   }
 
   private afterSave(): void {
-    this.securityHelper.afterSave(Table.User, async req => {
+    this.securityHelper.afterSave(Table.User, async (req) => {
       if (req.object.get('createdAt').getTime() === req.object.get('updatedAt').getTime()) {
         await this.roleHelper.addToUserRole(req.object);
       }

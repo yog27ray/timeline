@@ -15,7 +15,7 @@ export class PostHooks {
   }
 
   private beforeSave(): void {
-    this.securityHelper.authenticatedBeforeSave(Table.Post, async req => {
+    this.securityHelper.authenticatedBeforeSave(Table.Post, async (req) => {
       this.postHelper.addUser(req.object, req.user);
       this.postHelper.validation(req.object);
       this.postHelper.updateEventTime(req.object);
